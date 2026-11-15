@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self';">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quest-Cord</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="logo">Q</span><div><b>Quest-Cord</b><small>GAME COMPANION</small></div></div>
+    <div class="side-label">KÜTÜPHANE</div>
+    <button class="nav active">▦　Oyun kataloğu</button>
+    <div class="side-note">Bir oyun seç, Discord durumunu güncelle.</div>
+    <div class="connection">
+      <span class="dot" id="dot"></span>
+      <div><b id="connectionText">Discord bağlı değil</b><small>Masaüstü uygulaması gerekli</small></div>
+    </div>
+  </aside>
+  <main>
+    <header><div><p class="eyebrow">KÜTÜPHANEN</p><h1>Oyunlarını keşfet<span>.</span></h1><p class="sub">Bir oyun seçerek Discord Rich Presence durumunu paylaş.</p></div><div class="avatar">Q</div></header>
+    <section class="connect panel">
+      <div class="section-icon">✦</div>
+      <div class="connect-copy"><b>Discord bağlantısı</b><small>Discord Developer Portal'dan oluşturduğun Application ID'yi gir.</small></div>
+      <input id="clientId" placeholder="Discord Application ID" autocomplete="off">
+      <button id="connectBtn" class="primary">Bağlan</button>
+    </section>
+    <div class="toolbar"><div><h2>Oyun kataloğu</h2><span id="count" class="muted"></span></div><input id="search" class="search" placeholder="⌕　Oyun ara..."></div>
+    <div id="games" class="games"></div>
+    <section class="selected panel">
+      <div><small>SEÇİLİ OYUN</small><b id="selectedName">Henüz oyun seçilmedi</b></div>
+      <button id="publishBtn" class="primary" disabled>Discord'da göster</button>
+      <button id="clearBtn" class="secondary">Durumu temizle</button>
+    </section>
+    <p id="status" class="status" role="status">Başlamak için Discord Application ID'ni bağla.</p>
+    <footer>Quest-Cord · Discord Rich Presence · <span>Oyunları gerçekten başlatmaz.</span></footer>
+  </main>
+  <script src="renderer.js"></script>
+</body>
+</html>
