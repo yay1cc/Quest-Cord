@@ -9,6 +9,7 @@ CARD = "#382638"
 PINK = "#ec6ba9"
 LIGHT = "#f9edf5"
 MUTED = "#b59eaf"
+APP_VERSION = "1.0.0"
 
 GAMES = [
     ("Minecraft", "Sandbox", "⛏"), ("Roblox", "Adventure", "▣"),
@@ -31,7 +32,7 @@ class QuestCord:
         self.rpc = None
         self.connected = False
         self.selected = None
-        root.title("Quest-Cord")
+        root.title(f"Quest-Cord v{APP_VERSION}")
         root.geometry("1000x720")
         root.minsize(780, 600)
         root.configure(bg=BG)
