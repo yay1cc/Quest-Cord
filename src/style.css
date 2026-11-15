@@ -10,3 +10,7 @@ input{background:#211722;border:1px solid #50394d;color:var(--text);padding:11px
 .game-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.game-card{background:var(--card);border:1px solid #493247;border-radius:10px;padding:13px;display:flex;align-items:center;gap:11px;text-align:left;color:var(--text);min-width:0}.game-card:hover,.game-card.selected{border-color:var(--pink);background:#493047}.game-icon{font-size:22px;color:var(--pink);width:28px;text-align:center}.game-name{font-size:12px;font-weight:700;overflow-wrap:anywhere}.game-genre{font-size:10px;color:var(--muted);margin-top:4px}
 .selection{font-size:12px;color:var(--muted);font-weight:700;margin:18px 0 10px}.actions{display:flex;gap:9px}.status{font-size:11px;color:var(--muted);min-height:16px;margin-top:13px}footer{font-size:10px;color:#806d7c;margin-top:25px}
 @media(max-width:900px){.sidebar{width:185px}.main{padding:28px 22px}.game-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:650px){.sidebar{display:none}.main{padding:22px 16px}.connect-panel{align-items:stretch;flex-wrap:wrap}.connect-panel>div{flex-basis:100%}.connect-panel input{flex:1;min-width:0}.game-grid{grid-template-columns:1fr}}
+
+.result-count{font-size:11px;color:var(--muted);margin:5px 0 0}
+.empty-results{grid-column:1/-1;padding:22px;background:var(--panel);border-radius:10px;color:var(--muted);font-size:13px;text-align:center}
+.toolbar input{width:min(320px,48%);min-height:42px}
