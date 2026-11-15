@@ -189,8 +189,8 @@ class QuestCord:
         game = self.selected
         def worker():
             try:
-                self.rpc.update(details="discord:@enhij",
-                                state="Playing " + game[:128], large_text="Quest-Cord")
+                self.rpc.update(details="Playing " + game[:128],
+                                state="discord:@enhij", large_text="Quest-Cord")
                 self.root.after(0, lambda: self.set_status(game + " Discord durumuna eklendi."))
             except Exception as exc:
                 msg = str(exc)
