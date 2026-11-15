@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'none'; object-src 'none'; base-uri 'none'; form-action 'none'">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quest-Cord</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="renderer.js" defer></script>
+</head>
+<body>
+  <aside class="sidebar">
+    <div class="brand"><span class="brand-mark">Q</span><div><b>Quest-Cord</b><small>GAME COMPANION</small></div></div>
+    <p class="side-heading">KÜTÜPHANE</p>
+    <div class="side-active">▦ &nbsp; Oyun kataloğu</div>
+    <div class="side-bottom" id="connectionState">● &nbsp; Discord bağlı değil</div>
+  </aside>
+  <main class="main">
+    <p class="eyebrow">KÜTÜPHANEN</p>
+    <h1>Oyunlarını keşfet<span>.</span></h1>
+    <p class="subtitle">Bir oyun seçerek Discord Rich Presence durumunu paylaş.</p>
+
+    <section class="connect-panel">
+      <div><b>Discord bağlantısı</b><p>Discord Developer Portal'dan aldığın Application ID'yi gir.</p></div>
+      <input id="clientId" inputmode="numeric" maxlength="20" placeholder="Discord Application ID" aria-label="Discord Application ID">
+      <button id="connectButton" class="primary">Bağlan</button>
+    </section>
+
+    <div class="toolbar"><h2>Oyun kataloğu</h2><input id="search" placeholder="Oyun ara..." aria-label="Oyun ara"></div>
+    <section id="gameGrid" class="game-grid" aria-label="Oyun kataloğu"></section>
+
+    <div class="selection" id="selection">Seçili oyun: Henüz seçilmedi</div>
+    <div class="actions"><button id="publishButton" class="primary">Discord'da göster</button><button id="clearButton" class="secondary">Durumu temizle</button></div>
+    <p id="status" class="status" role="status">Başlamak için Discord Application ID'ni bağla.</p>
+    <footer>Quest-Cord · Discord Rich Presence · Oyunları başlatmaz.</footer>
+  </main>
+</body>
+</html>
