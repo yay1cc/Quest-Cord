@@ -1,2 +1,2 @@
-pypresence==4.3.0
-pyinstaller==6.19.0
+pypresence>=4.3,<5
+pyinstaller>=6,<7
