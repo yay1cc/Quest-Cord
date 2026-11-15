@@ -10,25 +10,66 @@ const games = [
 ];
 let selectedGame = null;
 const $ = (id) => document.getElementById(id);
-function status(message){ $("status").textContent = message; }
-function renderGames(){
-  const query = $("search").value.trim().toLocaleLowerCase("tr");
+
+// Turkish characters, punctuation and spacing are normalized so searches are forgiving.
+function normalize(value) {
+  return value.toLocaleLowerCase("tr")
+    .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+    .replace(/ı/g, "i").replace(/[^a-z0-9]+/g, " ").trim();
+}
+function matchesGame(game, query) {
+  if (!query) return true;
+  const haystack = normalize(game.join(" "));
+  return query.split(" ").every(token => haystack.includes(token));
+}
+function renderGames() {
+  const query = normalize($("search").value);
   const grid = $("gameGrid");
+  const filtered = games.filter(game => matchesGame(game, query));
   grid.replaceChildren();
-  games.filter(([name,genre]) => (name+" "+genre).toLocaleLowerCase("tr").includes(query)).forEach(game => {
+  $("resultCount").textContent = query
+    ? filtered.length + " oyun bulundu"
+    : games.length + " oyun listeleniyor";
+
+  if (filtered.length === 0) {
+    const empty = document.createElement("p");
+    empty.className = "empty-results";
+    empty.textContent = "Bu aramayla eşleşen oyun bulunamadı. Oyun adını farklı yazmayı dene.";
+    grid.append(empty);
+    return;
+  }
+
+  filtered.forEach(game => {
     const button = document.createElement("button");
     button.className = "game-card" + (selectedGame === game[0] ? " selected" : "");
     button.type = "button";
-    const icon = document.createElement("span"); icon.className = "game-icon"; icon.textContent = game[2];
+    const icon = document.createElement("span");
+    icon.className = "game-icon";
+    icon.textContent = game[2];
     const info = document.createElement("span");
-    const name = document.createElement("div"); name.className = "game-name"; name.textContent = game[0];
-    const genre = document.createElement("div"); genre.className = "game-genre"; genre.textContent = game[1];
-    info.append(name,genre); button.append(icon,info);
-    button.addEventListener("click", () => { selectedGame = game[0]; $("selection").textContent = "Seçili oyun: " + selectedGame; renderGames(); });
+    const name = document.createElement("div");
+    name.className = "game-name";
+    name.textContent = game[0];
+    const genre = document.createElement("div");
+    genre.className = "game-genre";
+    genre.textContent = game[1];
+    info.append(name, genre);
+    button.append(icon, info);
+    button.addEventListener("click", () => {
+      selectedGame = game[0];
+      $("selection").textContent = "Seçili oyun: " + selectedGame;
+      renderGames();
+    });
     grid.append(button);
   });
 }
 $("search").addEventListener("input", renderGames);
+$("search").addEventListener("keydown", event => {
+  if (event.key === "Escape") {
+    $("search").value = "";
+    renderGames();
+  }
+});
 $("connectButton").addEventListener("click", async () => {
   const id = $("clientId").value.trim();
   $("connectButton").disabled = true;
@@ -38,17 +79,22 @@ $("connectButton").addEventListener("click", async () => {
     $("connectionState").textContent = "●  Discord bağlı";
     $("connectionState").style.color = "#69d69a";
     status("Discord bağlantısı kuruldu.");
-  } catch(error) { status(error.message); }
+  } catch (error) { status(error.message); }
   finally { $("connectButton").disabled = false; }
 });
 $("publishButton").addEventListener("click", async () => {
   if (!selectedGame) return status("Önce katalogdan bir oyun seç.");
-  try { await window.questCord.publish(selectedGame); status(selectedGame + " Discord durumuna eklendi."); }
-  catch(error) { status(error.message); }
+  try {
+    await window.questCord.publish(selectedGame);
+    status(selectedGame + " Discord durumuna eklendi.");
+  } catch (error) { status(error.message); }
 });
 $("clearButton").addEventListener("click", async () => {
-  try { await window.questCord.clear(); status("Discord durumu temizlendi."); }
-  catch(error) { status(error.message); }
+  try {
+    await window.questCord.clear();
+    status("Discord durumu temizlendi.");
+  } catch (error) { status(error.message); }
 });
+function status(message) { $("status").textContent = message; }
 window.questCord.onStatus(status);
 renderGames();
