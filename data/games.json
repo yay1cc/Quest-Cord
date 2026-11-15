@@ -1,0 +1,12 @@
+[
+  {"name":"Minecraft","genre":"Sandbox","icon":"⛏️"},
+  {"name":"Roblox","genre":"Adventure","icon":"🧱"},
+  {"name":"Fortnite","genre":"Battle Royale","icon":"🚌"},
+  {"name":"Grand Theft Auto V","genre":"Action","icon":"🚗"},
+  {"name":"Counter-Strike 2","genre":"Shooter","icon":"🎯"},
+  {"name":"Valorant","genre":"Shooter","icon":"💥"},
+  {"name":"League of Legends","genre":"MOBA","icon":"⚔️"},
+  {"name":"Among Us","genre":"Party","icon":"🚀"},
+  {"name":"Stardew Valley","genre":"Simulation","icon":"🌱"},
+  {"name":"Terraria","genre":"Sandbox","icon":"🌳"}
+]
