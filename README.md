@@ -1,5 +1,7 @@
 # Quest-Cord
 
+**Current version: 1.0.0**
+
 A pink-themed Windows desktop companion with a searchable game catalogue and Discord Rich Presence.
 
 ## Features
